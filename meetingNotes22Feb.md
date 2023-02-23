@@ -1,6 +1,6 @@
-Meeting Notes Feb 22
+# Meeting Notes Feb 22
 
-Terminal Player
+## Terminal Player
 1. User Provides Photo
 2. Open the photo in C (openCV)
 3. Convert to a binary photo (matrix)
