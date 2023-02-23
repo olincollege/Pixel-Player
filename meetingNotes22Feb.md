@@ -9,3 +9,8 @@
 6. Print string representation in terminal
 
 Add complexities after we get the first 6 steps done
+
+## Tasks:
+- Phillip: Loading photo in C (2-3)
+- Maya: Getting dimensions of terminal (4-5)
+- Isa: How to represent a photo as a string (5-6)
