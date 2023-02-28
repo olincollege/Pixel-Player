@@ -1,9 +1,9 @@
 #include "dithering.h"
-
+#include <stdio.h>
 // nc is the number of colors per rgb channel
 
 float float_round(float num) {
-    if ((float) (num - (float) ((int) num)) >= .50 ) {
+    if ((float) (num - (float) ((int) num)) >= 0.50 ) {
         return (float) ((int) num + 1);
     }
 
@@ -50,4 +50,16 @@ int main(void) {
 
     dither(img);
 
+
+    // printing the dithered image, haven't tested bc need image matrix
+    for(int row = 0; row < HEIGHT; row++) {
+        for(int col = 0; col < WIDTH; col++) {
+            if (img[row][col] > 127.5) {
+                printf(" ");
+            } else {
+                printf(".");
+            }
+        }
+        printf("\n");
+    }
 }
