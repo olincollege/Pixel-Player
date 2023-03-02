@@ -1,9 +1,9 @@
 #pragma once
 
-int HEIGHT = 2;
-int WIDTH = 2;
+const int HEIGHT = 6;
+const int WIDTH = 6;
 
-float float_round (float num);
-float get_new_value (float old_val);
+double double_round (double num);
+double get_new_value (double old_val);
 
-void dither (float img[HEIGHT][WIDTH]);
+void dither (double img[HEIGHT][WIDTH]);

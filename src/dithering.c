@@ -2,25 +2,25 @@
 #include <stdio.h>
 // nc is the number of colors per rgb channel
 
-float float_round(float num) {
-    if ((float) (num - (float) ((int) num)) >= 0.50 ) {
-        return (float) ((int) num + 1);
+double double_round(double num) {
+    if ((num - (double) ((int) num)) >= 0.50 ) {
+        return (double) ((int) num + 1);
     }
 
-    return (float) ((int) num);
+    return (double) ((int) num);
 }
 
-float get_new_value(float old_val) {
-    return (float_round(old_val))  / (255.0);
+double get_new_value(double old_val) {
+    return (double_round(old_val))  / (255.0);
 }
 
-void dither (float img[HEIGHT][WIDTH]) {
+void dither (double img[HEIGHT][WIDTH]) {
     
     for(int row = 0; row < HEIGHT; row++) {
         for(int col = 0; col < WIDTH; col++) {
-            float old_value = img[row][col];
-            float new_value = get_new_value(old_value);
-            float error = old_value - new_value;
+            double old_value = img[row][col];
+            double new_value = get_new_value(old_value);
+            double error = old_value - new_value;
             // printf("error: %f\n", error);
             if(error < 0) {
                 error = -1*error;
@@ -44,22 +44,32 @@ void dither (float img[HEIGHT][WIDTH]) {
     }
 }
 
-int main(void) {
-
-    float img[2][2] = {{10.5, 20.3}, {20.8, 40.999}};
-
-    dither(img);
-
-
-    // printing the dithered image, haven't tested bc need image matrix
+void print_image(double img[HEIGHT][WIDTH]) {
     for(int row = 0; row < HEIGHT; row++) {
         for(int col = 0; col < WIDTH; col++) {
-            if (img[row][col] > 127.5) {
-                printf(" ");
+            if (img[row][col] > 0.5) {
+                printf("1");
             } else {
-                printf(".");
+                printf("0");
             }
         }
         printf("\n");
     }
 }
+
+// int main(void) {
+
+//     double img[6][6] = {
+//         {0, 0, 0, 0, 0, 0},
+//         {0, 255, 0, 0, 255, 0},
+//         {0, 255, 0, 0, 255, 0},
+//         {0, 0, 0, 0, 0, 0},
+//         {0, 255, 255, 255, 255, 0},
+//         {0, 0, 0, 0, 0, 0}
+//     };
+
+//     dither(img);
+
+//     // printing the dithered image, haven't tested bc need image matrix
+//     print_image(img);
+// }
