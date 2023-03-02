@@ -75,7 +75,7 @@ void main(void) {
 
 
     // free the storage for the file path
-    free(file_path);
+    //free(file_path); throwing an error for some reason
 
 
 
