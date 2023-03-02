@@ -1,7 +1,8 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
-//#include "photoprocess.c"
-//#include "isa_file.c"
+#include "stb_image.h"
+#include "stb_image_resize.h"
+#include "photoprocess.c"
 
 int main(void){
     //Find the terminal size
@@ -13,5 +14,26 @@ int main(void){
     //Convert photo to array
 
     //Convert array to printed output!
+
+
+    // prompt the user for a file path
+    //const char* file_path = user_input();
+    const char* file_path = "/home/phillip/github/Pixel-Player/src/img/test.png";
+
+    // initialize variables to store the image parameters
+    int width, height, channels;
+
+    printf("%s\n", file_path);
+
+    // load the image from the file path, specify 1 to only load the grey values
+    unsigned char* img = stbi_load(file_path, &width, &height, &channels, 1);
+
+    // if the load failed it will return NULL, so exit the code
+    if (img == NULL){
+        puts("Error in loading the image!");
+        exit(1);
+    }
+
+    printf("%d\n", channels);
 
 }
