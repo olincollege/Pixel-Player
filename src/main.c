@@ -34,6 +34,17 @@ int main(void){
         exit(1);
     }
 
-    printf("%d\n", channels);
+    // create an array to store the pixel values
+    unsigned int image_array[height][width];
+
+    // loop through each of the pixel values and add them to the array
+    // remember arrays start at 0,0
+    // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
+
+    for (size_t i = 0; i < width*height; i++){
+        // store the pixel in its proper place
+        image_array[i / width][i % width] = (int)(img[i]);
+    }
+
 
 }
