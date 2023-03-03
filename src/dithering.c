@@ -47,29 +47,30 @@ void dither (double img[HEIGHT][WIDTH]) {
 void print_image(double img[HEIGHT][WIDTH]) {
     for(int row = 0; row < HEIGHT; row++) {
         for(int col = 0; col < WIDTH; col++) {
-            if (img[row][col] > 0.5) {
-                printf("1");
+            if (img[row][col] > 127.5) {
+                printf(".");
             } else {
-                printf("0");
+                printf(" ");
             }
+            // printf("%f ", img[row][col]);
         }
         printf("\n");
     }
 }
 
-// int main(void) {
+int main(void) {
 
-//     double img[6][6] = {
-//         {0, 0, 0, 0, 0, 0},
-//         {0, 255, 0, 0, 255, 0},
-//         {0, 255, 0, 0, 255, 0},
-//         {0, 0, 0, 0, 0, 0},
-//         {0, 255, 255, 255, 255, 0},
-//         {0, 0, 0, 0, 0, 0}
-//     };
+    double img[6][6] = {
+        {0, 0, 0, 0, 0, 0},
+        {0, 255, 0, 0, 255, 0},
+        {0, 255, 0, 0, 255, 0},
+        {0, 0, 0, 0, 0, 0},
+        {0, 255, 255, 255, 255, 0},
+        {0, 0, 0, 0, 0, 0}
+    };
 
-//     dither(img);
+    dither(img);
 
-//     // printing the dithered image, haven't tested bc need image matrix
-//     print_image(img);
-// }
+    // printing the dithered image, haven't tested bc need image matrix
+    print_image(img);
+}
