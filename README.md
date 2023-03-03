@@ -7,9 +7,8 @@
 - [x] Convert a RGB Image to a binary representation
 
 ### Maya
-- [ ] Find dimensions of a user's terminal
-- [ ] Figure out what happens with multiple terminals
-- [ ] Store dimensions in C integer objects
+- [x] Find dimensions of a user's terminal
+- [x] Store dimensions in C integer objects
 
 ### Isa
 - [x] Represent an image with text values
