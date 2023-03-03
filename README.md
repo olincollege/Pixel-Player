@@ -3,8 +3,8 @@
 ## Tasks
 
 ### Phillip
-- [ ] Load a photo from terminal into C
-- [ ] Convert a RGB Image to a binary representation
+- [X] Load a photo from terminal into C
+- [X] Convert a RGB Image to a binary representation
 
 ### Maya
 - [ ] Find dimensions of a user's terminal
