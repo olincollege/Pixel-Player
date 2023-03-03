@@ -12,6 +12,6 @@
 - [ ] Store dimensions in C integer objects
 
 ### Isa
-- [ ] Represent an image with text values
-- [ ] Scale a photo based on different output dimensions
+- [x] Represent an image with text values
+- [x] Scale a photo based on different output dimensions
 - [ ] Stretch: create color representation of pixels
