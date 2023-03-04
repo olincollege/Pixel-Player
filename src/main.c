@@ -1,8 +1,12 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
+// #include "extern_define.h"
 #include "stb_image.h"
 #include "stb_image_resize.h"
 #include "photoprocess.c"
+#include "dithering.h"
+
+
 
 int main(void){
     //Find the terminal size
@@ -18,7 +22,7 @@ int main(void){
 
     // prompt the user for a file path
     //const char* file_path = user_input();
-    const char* file_path = "/home/phillip/github/Pixel-Player/src/img/test.png";
+    const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/test.png";
 
     // initialize variables to store the image parameters
     int width, height, channels;
@@ -46,7 +50,7 @@ int main(void){
                                output_pixels, resize_width, resize_height, 0, 1);
 
     // create an array to store the pixel values sized to the user terminal
-    unsigned int image_array[resize_height][resize_width];
+    double *image_array[resize_height][resize_width];
 
     // loop through each of the pixel values and add them to the array
     // remember arrays start at 0,0
@@ -54,19 +58,29 @@ int main(void){
 
     for (size_t i = 0; i < resize_width*resize_height; i++){
         // store the pixel in its proper place
-        image_array[i / resize_width][i % resize_width] = (int)(output_pixels[i]);
+        // printf("here\n");
+        double output = (double)(output_pixels[i]);
+        image_array[i / resize_width][i % resize_width] = &output;
     }
+    print_image(image_array, resize_height, resize_width);
+    // height = resize_height;
+    // width = resize_width;
+        // print a test representation of the image
+    // for (size_t j = 0; j < resize_height; j++){
 
-    // print a test representation of the image
-    for (size_t j = 0; j < resize_height; j++){
+    // for (size_t i = 0; i < resize_width; i++){
+    //     if (i == resize_width - 1){
+    //         printf("%d\n", (int)image_array[j][i] % 2);
+    //     } else {
+    //         printf("%d", (int) image_array[j][i] % 2);
+    //     }
 
-    for (size_t i = 0; i < resize_width; i++){
-        if (i == resize_width - 1){
-            printf("%d\n", image_array[j][i] % 2);
-        } else {
-            printf("%d", image_array[j][i] % 2);
-        }
-
-    }
-    }
+    // }
+    // }
+    // printf("%f", resize_height);
+    // printf("about to dither \n");
+    printf("here\n");
+    dither(image_array, resize_height, resize_width);
+    // free
+    return 0;
 }
