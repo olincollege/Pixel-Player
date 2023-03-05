@@ -50,7 +50,7 @@ int main(void){
                                output_pixels, resize_width, resize_height, 0, 1);
 
     // create an array to store the pixel values sized to the user terminal
-    double *image_array[resize_height][resize_width];
+    double image_array[resize_height][resize_width];
 
     // loop through each of the pixel values and add them to the array
     // remember arrays start at 0,0
@@ -58,11 +58,10 @@ int main(void){
 
     for (size_t i = 0; i < resize_width*resize_height; i++){
         // store the pixel in its proper place
-        // printf("here\n");
-        double output = (double)(output_pixels[i]);
-        image_array[i / resize_width][i % resize_width] = &output;
+
+        image_array[i / resize_width][i % resize_width] = (double)(int)(output_pixels[i]);
     }
-    print_image(image_array, resize_height, resize_width);
+    // print_image(image_array, resize_height, resize_width);
     // height = resize_height;
     // width = resize_width;
         // print a test representation of the image
@@ -72,7 +71,7 @@ int main(void){
     //     if (i == resize_width - 1){
     //         printf("%d\n", (int)image_array[j][i] % 2);
     //     } else {
-    //         printf("%d", (int) image_array[j][i] % 2);
+    //         printf("%d ", (int) image_array[j][i]);
     //     }
 
     // }

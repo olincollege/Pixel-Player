@@ -1,17 +1,19 @@
 #include "dithering.h"
 #include <stdio.h>
+#include <math.h>
 // nc is the number of colors per rgb channel
 
-double double_round(double num) {
-    if ((num - (double) ((int) num)) >= 0.50 ) {
-        return (double) ((int) num + 1);
-    }
+// double double_round(double* num) {
+//     if ((num - (double) ((int) num)) >= 0.50 ) {
+//         return (double) ((int) num + 1);
+//     }
 
-    return (double) ((int) num);
-}
+//     return (double) ((int) num);
+// }
 
 double get_new_value(double old_val) {
-    return (double_round(old_val))  / (255.0);
+    // round returns an int??
+    return (double) (round(old_val)  / (255.0));
 }
 
 void dither (double** img, int height, int width) {
