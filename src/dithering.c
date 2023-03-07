@@ -1,15 +1,6 @@
 #include "dithering.h"
 #include <stdio.h>
 #include <math.h>
-// nc is the number of colors per rgb channel
-
-// double double_round(double* num) {
-//     if ((num - (double) ((int) num)) >= 0.50 ) {
-//         return (double) ((int) num + 1);
-//     }
-
-//     return (double) ((int) num);
-// }
 
 double get_new_value(double old_val) {
     // round returns an int??
@@ -17,12 +8,13 @@ double get_new_value(double old_val) {
 }
 
 void dither (double** img, int height, int width) {
-    // printf("about to enter for loop\n");
-    // printf("here\n");
+    // try fix at this link:
+    // https://stackoverflow.com/questions/50080050/not-able-to-access-two-dimensional-array-by-assigning-to-pointer
     for(int row = 0; row < height; row++) {
         for(int col = 0; col < width; col++) {
             // printf("at top of 2nd loop");
             double old_value = img[row][col];
+            // double test = *old_value;
             double new_value = get_new_value(old_value);
             double error = old_value - new_value;
             // // printf("error: %f\n", error);
@@ -62,22 +54,3 @@ void print_image(double** img, int height, int width) {
         printf("\n");
     }
 }
-
-// int main(void) {
-
-//     double* img[6][6] = {
-//         {0, 0, 0, 0, 0, 0},
-//         {0, 255, 0, 0, 255, 0},
-//         {0, 255, 0, 0, 255, 0},
-//         {0, 0, 0, 0, 0, 0},
-//         {0, 255, 255, 255, 255, 0},
-//         {0, 0, 0, 0, 0, 0}
-//     };
-//     int height = 6;
-//     int width = 6;
-
-//     dither(img, height, width);
-
-//     // printing the dithered image, haven't tested bc need image matrix
-//     // print_image(img, 6, 6);
-// }
