@@ -5,7 +5,7 @@
 #include "stb_image_resize.h"
 #include "photoprocess.c"
 #include "dithering.h"
-
+#include <stdlib.h>
 
 
 int main(void){
@@ -22,7 +22,7 @@ int main(void){
 
     // prompt the user for a file path
     //const char* file_path = user_input();
-    const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/test.png";
+    const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/testimg.png";
 
     // initialize variables to store the image parameters
     int width, height, channels;
@@ -50,8 +50,10 @@ int main(void){
                                output_pixels, resize_width, resize_height, 0, 1);
 
     // create an array to store the pixel values sized to the user terminal
-    double image_array[resize_height][resize_width];
-
+    double **image_array = (double **)malloc(resize_height* sizeof(double *));
+    for(int i = 0; i < resize_width; i++){
+        image_array[i] = (double*)malloc(resize_width * sizeof(double));
+    }
     // loop through each of the pixel values and add them to the array
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
@@ -65,21 +67,27 @@ int main(void){
     // height = resize_height;
     // width = resize_width;
         // print a test representation of the image
-    // for (size_t j = 0; j < resize_height; j++){
+    for (size_t j = 0; j < resize_height; j++){
 
-    // for (size_t i = 0; i < resize_width; i++){
-    //     if (i == resize_width - 1){
-    //         printf("%d\n", (int)image_array[j][i] % 2);
-    //     } else {
-    //         printf("%d ", (int) image_array[j][i]);
-    //     }
+        for (size_t i = 0; i < resize_width; i++){
+            if (i == resize_width - 1){
+                printf("%f\n", image_array[j][i]);
+            } else {
+                printf("%f ", image_array[j][i]);
+            }
 
-    // }
-    // }
+        }
+    }
+    // double* first_pointer = &image_array;
     // printf("%f", resize_height);
     // printf("about to dither \n");
     printf("here\n");
+    printf("%d\n", sizeof(image_array)/sizeof(image_array[0]));
+    printf("%p\n", image_array);
     dither(image_array, resize_height, resize_width);
-    // free
+    // for(int i = 0; i < resize_width; i++) {
+    //     free(image_array[i]);
+    // }
+    // free(image_array);
     return 0;
 }

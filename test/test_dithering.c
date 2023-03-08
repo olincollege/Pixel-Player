@@ -1,5 +1,5 @@
-// #include "../src/dithering.c"
-// #include <criterion/criterion.h>
-// #include <criterion/new/assert.h>
+#include "../src/dithering.h"
+#include <criterion/criterion.h>
+#include <criterion/new/assert.h>
 
 
