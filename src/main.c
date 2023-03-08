@@ -66,28 +66,12 @@ int main(void){
     // print_image(image_array, resize_height, resize_width);
     // height = resize_height;
     // width = resize_width;
-        // print a test representation of the image
-    for (size_t j = 0; j < resize_height; j++){
-
-        for (size_t i = 0; i < resize_width; i++){
-            if (i == resize_width - 1){
-                printf("%f\n", image_array[j][i]);
-            } else {
-                printf("%f ", image_array[j][i]);
-            }
-
-        }
-    }
     // double* first_pointer = &image_array;
     // printf("%f", resize_height);
     // printf("about to dither \n");
-    printf("here\n");
-    printf("%d\n", sizeof(image_array)/sizeof(image_array[0]));
-    printf("%p\n", image_array);
+    
     dither(image_array, resize_height, resize_width);
-    // for(int i = 0; i < resize_width; i++) {
-    //     free(image_array[i]);
-    // }
-    // free(image_array);
+    print_image(image_array, resize_height, resize_width);
+    free(image_array);
     return 0;
 }

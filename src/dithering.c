@@ -8,9 +8,7 @@ double get_new_value(double old_val) {
 }
 
 void dither (double** img, int height, int width) {
-    // try fix at this link:
-    // https://stackoverflow.com/questions/50080050/not-able-to-access-two-dimensional-array-by-assigning-to-pointer
-    printf("In function dither\n");
+
     for(int row = 0; row < height; row++) {
         // double row_array = img[row];
         for(int col = 0; col < width; col++) {
@@ -41,7 +39,7 @@ void dither (double** img, int height, int width) {
         }
     }
     // printf("here\n");
-    print_image(img, height, width);
+    // print_image(img, height, width);
 }
 
 void print_image(double** img, int height, int width) {
