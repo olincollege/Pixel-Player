@@ -55,9 +55,6 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
     int height;
     int channels;
 
-    printf("%d\n", t_width);
-    printf("%d\n", t_height);
-
     // create a character array to store the resized image
     unsigned char resized_img[t_width*t_height];
 
@@ -75,15 +72,13 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
 
     // if the load failed it will return NULL, so exit the code
     if (img == NULL){
-        puts("Error in loading the image!");
+        puts("Error in loading the image! Remember to provide the full file path");
         exit(1);
     }
 
     // resize the image to the user terminal dimensions
     (void)stbir_resize_uint8(img , width , height , 0,
                                resized_img, t_width, t_height, 0, 1);
-
-    puts("I made it here!");
 
     // loop through each of the pixel values and add them to the array
     // remember arrays start at 0,0
@@ -107,16 +102,12 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
 void clear_memory(const char* file_path, unsigned int** image_array, unsigned int image_height){
     // clear all of the mallocs from memory
 
-    puts("hahahaha");
     // free the file path first
     free(file_path);
-
-    puts("I made it here");
 
     // since image array is a double pointer, we first have to loop through
     // and free each row before free image_array itself
     for (unsigned int i = 0; i < image_height; i++){
-        printf("%d\n", i);
         free(image_array[i]);
     }
 
