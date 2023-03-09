@@ -28,9 +28,7 @@ int main(void){
     
     dither(image_array, resize_height, resize_width);
     print_image(image_array, resize_height, resize_width);
-    free(image_array);
-    printf ("lines %d\n", w.ws_row);
-printf ("columns %d\n", w.ws_col);
+
 
 
     // do not run if file path is hard coded
