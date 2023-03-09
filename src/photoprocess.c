@@ -49,7 +49,7 @@ const char* user_input(void){
 }
 }
 
-unsigned int** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
+double** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
     // create the variables to store the original photo properties
     int width;
     int height;
@@ -60,9 +60,11 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
 
     // create the integer array to store the final output
     // allocate the first level (rows)
+    double ** image_array = (double **)malloc(t_height*sizeof(double*));
 
     // allocate the second level
     for (unsigned int i = 0; i < t_height; i++) {
+        image_array[i] = (double *) malloc(t_width*sizeof(double));
     }
 
     // load the image from the file path, specify 1 to only load the grey values
@@ -82,15 +84,11 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
-    // printf("%d\n", t_height*t_width);
 
     for (size_t i = 0; i < t_width*t_height; i++){
-        // printf("(%d,%d)\n", i % t_width, i / t_width);
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
     }
-
-    // printf("%i\n", image_array[10][137]);
 
     // return the array of arrays
     return(image_array);
