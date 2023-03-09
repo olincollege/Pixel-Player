@@ -1,17 +1,3 @@
 # Pixel-Player
 
-## Tasks
-
-### Phillip
-- [ ] Load a photo from terminal into C
-- [ ] Convert a RGB Image to a binary representation
-
-### Maya
-- [ ] Find dimensions of a user's terminal
-- [ ] Figure out what happens with multiple terminals
-- [ ] Store dimensions in C integer objects
-
-### Isa
-- [ ] Represent an image with text values
-- [ ] Scale a photo based on different output dimensions
-- [ ] Stretch: create color representation of pixels
+Load in an image and prints it out as ASCII art. Performs dithering on the image before printing. Takes in jpgs and pngs. Provide a file path to load in an image.
