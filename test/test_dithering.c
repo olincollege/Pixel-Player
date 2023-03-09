@@ -1,6 +1,9 @@
 #include "../src/dithering.h"
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
+#include <criterion/redirect.h>
+#include <stdio.h>
+
 
 
 // function to assign a value to each spot in an array
@@ -48,7 +51,41 @@ Test(test_dither, array_zeros) {
         }
     }
 
-}
-// Check that printing an array of zeros prints a bunch of spaces
+    free(arr);
+    free(expected_arr);
 
-// Check that printing an array of 255 prints blocks only
+}
+// Check that printing an array of zeros prints a bunch of $
+Test(test_print, array_full, .init = cr_redirect_stdout) {
+    int height = 1;
+    int width = 1;
+    double** arr = (double**) malloc (height * sizeof(double*));
+    for(int i = 0; i < height; i++) {
+        arr[i] = (double*) malloc (width * sizeof(double));
+    }
+    assign(arr, height, width, 0.0);
+    print_image(arr, height, width);
+    (void)fflush(stdout);
+    (void)fclose(stdout);
+
+    cr_assert_stdout_eq_str("$\n");
+    free(arr);
+}
+
+// Check that printing an array of 255 prints blanks only
+Test(test_print, array_blank, .init = cr_redirect_stdout) {
+    int height = 1;
+    int width = 1;
+    double** arr = (double**) malloc (height * sizeof(double*));
+    for(int i = 0; i < height; i++) {
+        arr[i] = (double*) malloc (width * sizeof(double));
+    }
+    assign(arr, height, width, 255.0);
+    print_image(arr, height, width);
+    (void)fflush(stdout);
+    (void)fclose(stdout);
+
+    cr_assert_stdout_eq_str(" \n");
+    free(arr);
+
+}
