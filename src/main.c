@@ -17,14 +17,10 @@ int main(void){
     //const char* file_path = user_input();
 
     const char* file_path = user_input();
-    
-    // store the resize width and height according to the user terminal
-    unsigned int resize_width = w.ws_col;
-    unsigned int resize_height = w.ws_row;
 
     
     // load the image
-    unsigned int** image_array = load_resize_image(file_path, resize_width, resize_height);
+    unsigned int** image_array = load_resize_image(file_path, (unsigned int)w.ws_col, (unsigned int)w.ws_row);
     
     dither(image_array, resize_height, resize_width);
     print_image(image_array, resize_height, resize_width);
@@ -32,7 +28,7 @@ int main(void){
 
 
     // do not run if file path is hard coded
-    clear_memory(file_path, image_array, (unsigned int)(w.ws_row));
+    clear_memory(file_path, image_array, (unsigned int)w.ws_row);
     
     return 0;
 
