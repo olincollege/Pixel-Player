@@ -9,16 +9,9 @@ int main(void){
     struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
 
-    //Load photo 
-
-    //Convert photo to array
-
-    //Convert array to printed output!
-
-
     // prompt the user for a file path
     //const char* file_path = user_input();
-    const char* file_path = "/home/phillip/github/Pixel-Player/src/img/test.png";
+    const char* file_path = user_input();
 
     unsigned int** image_array = load_resize_image(file_path, (unsigned int)(w.ws_col), (unsigned int)(w.ws_row));
 
@@ -39,5 +32,5 @@ int main(void){
     }
 
     // do not run if file path is hard coded
-    //clear_memory(file_path, image_array, (unsigned int)(w.ws_row));
+    clear_memory(file_path, image_array, (unsigned int)(w.ws_row));
 }
