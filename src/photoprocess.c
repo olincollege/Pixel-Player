@@ -49,6 +49,82 @@ const char* user_input(void){
 }
 }
 
+unsigned int** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
+    // create the variables to store the original photo properties
+    int width;
+    int height;
+    int channels;
+
+    printf("%d\n", t_width);
+    printf("%d\n", t_height);
+
+    // create a character array to store the resized image
+    unsigned char resized_img[t_width*t_height];
+
+    // create the integer array to store the final output
+    // allocate the first level (rows)
+    unsigned int ** image_array = (unsigned int **)malloc(t_height*sizeof(unsigned int*));
+
+    // allocate the second level
+    for (unsigned int i = 0; i < t_height; i++) {
+        image_array[i] = (unsigned int *) malloc(t_width*sizeof(unsigned int));
+    }
+
+    // load the image from the file path, specify 1 to only load the grey values
+    unsigned char* img = stbi_load(file_path, &width, &height, &channels, 1);
+
+    // if the load failed it will return NULL, so exit the code
+    if (img == NULL){
+        puts("Error in loading the image!");
+        exit(1);
+    }
+
+    // resize the image to the user terminal dimensions
+    (void)stbir_resize_uint8(img , width , height , 0,
+                               resized_img, t_width, t_height, 0, 1);
+
+    puts("I made it here!");
+
+    // loop through each of the pixel values and add them to the array
+    // remember arrays start at 0,0
+    // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
+
+    printf("%d\n", t_height*t_width);
+
+    for (size_t i = 0; i < t_width*t_height; i++){
+        printf("(%d,%d)\n", i % t_width, i / t_width);
+        // store the pixel in its proper place
+        image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
+    }
+
+    printf("%i\n", image_array[10][137]);
+
+    // return the array of arrays
+    return(image_array);
+
+}
+
+void clear_memory(const char* file_path, unsigned int** image_array, unsigned int image_height){
+    // clear all of the mallocs from memory
+
+    puts("hahahaha");
+    // free the file path first
+    free(file_path);
+
+    puts("I made it here");
+
+    // since image array is a double pointer, we first have to loop through
+    // and free each row before free image_array itself
+    for (unsigned int i = 0; i < image_height; i++){
+        printf("%d\n", i);
+        free(image_array[i]);
+    }
+
+    free(image_array);
+
+}
+
+
 
 
 
