@@ -84,15 +84,11 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
-    printf("%d\n", t_height*t_width);
 
     for (size_t i = 0; i < t_width*t_height; i++){
-        printf("(%d,%d)\n", i % t_width, i / t_width);
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
     }
-
-    printf("%i\n", image_array[10][137]);
 
     // return the array of arrays
     return(image_array);
