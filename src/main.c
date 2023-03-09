@@ -22,7 +22,7 @@ int main(void){
 
     // prompt the user for a file path
     //const char* file_path = user_input();
-    const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/test.png";
+    const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/testimage2.jpg";
 
     // initialize variables to store the image parameters
     int width, height, channels;
@@ -66,5 +66,7 @@ int main(void){
     dither(image_array, resize_height, resize_width);
     print_image(image_array, resize_height, resize_width);
     free(image_array);
+    printf ("lines %d\n", w.ws_row);
+printf ("columns %d\n", w.ws_col);
     return 0;
 }
