@@ -60,11 +60,9 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
 
     // create the integer array to store the final output
     // allocate the first level (rows)
-    double ** image_array = (double **)malloc(t_height*sizeof(double*));
 
     // allocate the second level
     for (unsigned int i = 0; i < t_height; i++) {
-        image_array[i] = (double *) malloc(t_width*sizeof(double));
     }
 
     // load the image from the file path, specify 1 to only load the grey values
