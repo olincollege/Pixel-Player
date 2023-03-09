@@ -1,8 +1,12 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
+// #include "extern_define.h"
 #include "stb_image.h"
 #include "stb_image_resize.h"
 #include "photoprocess.c"
+#include "dithering.h"
+#include <stdlib.h>
+
 
 int main(void){
     //Find the terminal size
@@ -18,12 +22,10 @@ int main(void){
 
     // prompt the user for a file path
     //const char* file_path = user_input();
-    const char* file_path = "/home/phillip/github/Pixel-Player/src/img/test.png";
+    const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/testimage2.jpg";
 
-    // initialize variables to store the image parameters
-    int width, height, channels;
-
-    printf("%s\n", file_path);
+    unsigned int** image_array = load_resize_image(file_path, (unsigned int)(w.ws_col), (unsigned int)(w.ws_row));
+    // printf("%s\n", file_path);
 
     // load the image from the file path, specify 1 to only load the grey values
     unsigned char* img = stbi_load(file_path, &width, &height, &channels, 1);
@@ -46,27 +48,23 @@ int main(void){
                                output_pixels, resize_width, resize_height, 0, 1);
 
     // create an array to store the pixel values sized to the user terminal
-    unsigned int image_array[resize_height][resize_width];
-
+    double **image_array = (double **) malloc ((size_t)resize_height* sizeof(double *));
+    for(int i = 0; i < resize_width; i++){
+        image_array[i] = (double*) malloc ((size_t) resize_width * sizeof(double));
+    }
     // loop through each of the pixel values and add them to the array
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
-    for (size_t i = 0; i < resize_width*resize_height; i++){
+    for (int i = 0; i < resize_width*resize_height; i++){
         // store the pixel in its proper place
-        image_array[i / resize_width][i % resize_width] = (int)(output_pixels[i]);
+        image_array[i / resize_width][i % resize_width] = (double)(int)(output_pixels[i]);
     }
-
-    // print a test representation of the image
-    for (size_t j = 0; j < resize_height; j++){
-
-    for (size_t i = 0; i < resize_width; i++){
-        if (i == resize_width - 1){
-            printf("%d\n", image_array[j][i] % 2);
-        } else {
-            printf("%d", image_array[j][i] % 2);
-        }
-
-    }
-    }
+    
+    dither(image_array, resize_height, resize_width);
+    print_image(image_array, resize_height, resize_width);
+    free(image_array);
+    printf ("lines %d\n", w.ws_row);
+printf ("columns %d\n", w.ws_col);
+    return 0;
 }
