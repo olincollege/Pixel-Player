@@ -24,9 +24,7 @@ int main(void){
     //const char* file_path = user_input();
     const char* file_path = "/home/newHomeDir/Pixel-Player/src/img/testimage2.jpg";
 
-    // initialize variables to store the image parameters
-    int width, height, channels;
-
+    unsigned int** image_array = load_resize_image(file_path, (unsigned int)(w.ws_col), (unsigned int)(w.ws_row));
     // printf("%s\n", file_path);
 
     // load the image from the file path, specify 1 to only load the grey values
