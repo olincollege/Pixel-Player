@@ -47,6 +47,9 @@ const char* user_input(void){
     // return the pointer to the user input
     return(pStr);
 }
+
+return(pStr);
+
 }
 
 double** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
@@ -78,14 +81,14 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
 
     // resize the image to the user terminal dimensions
     (void)stbir_resize_uint8(img , width , height , 0,
-                               resized_img, t_width, t_height, 0, 1);
+                               resized_img, (int)t_width, (int)t_height, 0, 1);
 
     // loop through each of the pixel values and add them to the array
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
 
-    for (size_t i = 0; i < t_width*t_height; i++){
+    for (size_t i = 0; i < (unsigned long)(t_width*t_height); i++){
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
     }
