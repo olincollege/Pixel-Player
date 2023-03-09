@@ -1,92 +1,91 @@
-#include "../src/dithering.c"
+#include "../src/dithering.h"
 #include <criterion/criterion.h>
 #include <criterion/new/assert.h>
+#include <criterion/redirect.h>
+#include <stdio.h>
 
 
-// Testing double_round
 
-// Rounding a double with a decimal less than 5 returns the double w/o the decimal
-Test(round, round_down) {
-    double num = 5.321;
-    double newNum = double_round(num);
-    cr_assert_eq(newNum, 5.0);
-
+// function to assign a value to each spot in an array
+void assign(double** arr, int height, int width, double val) {
+    for(int i = 0; i < height; i++) {
+        for(int j = 0; j < width; j++) {
+            arr[i][j] = val;
+        }
+    }
 }
 
-// Rounding a double with a decimal greater than 5 returns the number + 1 as a double
-Test(round, round_up) {
-    double num = 5.6;
-    double newNum = double_round(num);
-    cr_assert_eq(newNum, 6.0);
+// Check that passing a positive number to get_new_value returns a positive number
+Test(test_new_value, positive_num) {
+    cr_assert(eq(get_new_value(255.0), 1.0));
+}
+// Check that passing zero to get_new_value returns zero
+Test(test_new_value, zero) {
+    cr_assert(eq(get_new_value(0.0), 0.0));
+}
+// check that passing a negative number to get_new_value returns a negative number
+Test(test_new_value, negative_num) {
+    cr_assert(eq(get_new_value(-255.0), -1.0));
+}
+// check that dithering an array of 0s does not alter that array
+Test(test_dither, array_zeros) {
+    int height = 5;
+    int width = 5;
+    double** arr = (double**) malloc (height * sizeof(double*));
+    for(int i = 0; i < height; i++) {
+        arr[i] = (double*) malloc (width * sizeof(double));
+    }
+    assign(arr, height, width, 0.0);
+
+    double** expected_arr = (double**) malloc (height * sizeof(double*));
+    for(int i = 0; i < height; i++) {
+        expected_arr[i] = (double*) malloc (width * sizeof(double));
+    }
+    assign(expected_arr, height, width, 0.0);
+
+    dither(arr, height, width);
+
+    for(int i = 0; i < height; i++) {
+        for(int j = 0; j < width; j++) {
+            cr_assert(eq(arr[i][j], expected_arr[i][j]));
+        }
+    }
+
+    free(arr);
+    free(expected_arr);
+
+}
+// Check that printing an array of zeros prints a bunch of $
+Test(test_print, array_full, .init = cr_redirect_stdout) {
+    int height = 1;
+    int width = 1;
+    double** arr = (double**) malloc (height * sizeof(double*));
+    for(int i = 0; i < height; i++) {
+        arr[i] = (double*) malloc (width * sizeof(double));
+    }
+    assign(arr, height, width, 0.0);
+    print_image(arr, height, width);
+    (void)fflush(stdout);
+    (void)fclose(stdout);
+
+    cr_assert_stdout_eq_str("$\n");
+    free(arr);
 }
 
-// Rounding a double with a decimal = to 5 returns the number + 1 as a double
-Test(round, round_point_five) {
-    double num = 5.5;
-    double newNum = double_round(num);
-    cr_assert_eq(newNum, 6.0);
-}
+// Check that printing an array of 255 prints blanks only
+Test(test_print, array_blank, .init = cr_redirect_stdout) {
+    int height = 1;
+    int width = 1;
+    double** arr = (double**) malloc (height * sizeof(double*));
+    for(int i = 0; i < height; i++) {
+        arr[i] = (double*) malloc (width * sizeof(double));
+    }
+    assign(arr, height, width, 255.0);
+    print_image(arr, height, width);
+    (void)fflush(stdout);
+    (void)fclose(stdout);
 
-// Rounding a double with no decimal portion just returns that number
-Test(round, stays_same) {
-    double num = 5.0;
-    double newNum = double_round(num);
-    cr_assert_eq(newNum, 5.0);
-}
+    cr_assert_stdout_eq_str(" \n");
+    free(arr);
 
-// Testing get_new_value (255) = 1
-Test(new_value, two_five_five) {
-    double num = 255.0;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 1.0);
 }
-
-// Testing get_new_value (255.1) = 1
-Test(new_value, two_five_five_one) {
-    double num = 255.1;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 1.0);
-}
-
-// Testing get_new_value (51) = 0.2 
-Test(new_value, five_one) {
-    double num = 51;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 0.2);
-}
-// Testing get_new_value (50.8) = 0.2 
-Test(new_value, five_zero_eight) {
-    double num = 50.8;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 0.2);
-}
-
-// Testing get_new_value (51.3) = 0.2 
-Test(new_value, five_one_three) {
-    double num = 51.3;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 0.2);
-}
-
-// test a value > 255, returns a value > 1
-// test get_new_value (510) = 2.0
-Test(new_value, five_one_zero) {
-    double num = 510;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 2.0);
-}
-
-// test get_new_value (510.1) = 2.0
-Test(new_value, five_one_zero_one) {
-    double num = 510.1;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 2.0);
-}
-
-// test get_new_value (509.5) = 2.0
-Test(new_value, five_zero_nine_five) {
-    double num = 509.5;
-    double newNum = get_new_value(num);
-    cr_assert_eq(newNum, 2.0);
-}
-// Testing dither
