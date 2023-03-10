@@ -4,7 +4,7 @@
 #include <criterion/redirect.h>
 #include <stdio.h>
 
-
+// When making a clean build, this files has a lot of notes, we decided to ignore them :)
 const double TWO_FIVE_FIVE = 255.0;
 // function to assign a value to each spot in an array
 void assign(double** arr, int height, int width, double val) {
