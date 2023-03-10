@@ -9,9 +9,22 @@ This program only loads jpgs and pngs. If you try to load any other image type, 
 ## How to run code
 
 ### Cloning the Repository
-First, you clone this directory onto your computer. To do this, click the green "code" button at the top of your screen. From there, either copy the SSH link or the HTTPS link. Then, in your terminal, run 
-
-    git clone [copy link here]
+First, clone this directory onto your computer. To do this, click the green "code" button at the top of the screen. From there, either copy the SSH link or the HTTPS link. Then, in your terminal, run 
+  git clone [copy link here].
+  
+  Once the repository is fully loaded up. Run the following lines of code in your terminal.
+  ```
+  mkdir build
+  cd build/
+  cmake ..
+  make
+  ./src/main
+  ```
+  The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path run the line:
+  ```
+  readlink -f name_of_file.filetype
+  ```
+  
 
 ## Dependencies
 
