@@ -22,27 +22,27 @@ const char* user_input(void){
 
     if(pStr != NULL)
     {
-	int c_input = EOF;
-	unsigned int idx = 0;
+    int c_input = EOF;
+    unsigned int idx = 0;
 
     //accept user input until hit enter or end of file
-	while (( c_input = getchar() ) != '\n' && c_input != EOF)
-	{
+    while (( c_input = getchar() ) != '\n' && c_input != EOF)
+    {
         // assign the input character to memory
-		pStr[idx++]=(char)c_input;
+        pStr[idx++]=(char)c_input;
 
-		//if idx reached maximize size then realloc size
-		if(idx == current_size)
-		{
+        //if idx reached maximize size then realloc size
+        if(idx == current_size)
+        {
             // update the maximum amount of memory to allocate
             current_size = idx+len_max;
             // allocate the new memory with our string
-			pStr = realloc(pStr, current_size);
-		}
-	}
+            pStr = realloc(pStr, current_size);
+        }
+    }
 
     // add an ending character to the end
-	pStr[idx] = '\0';
+    pStr[idx] = '\0';
 
     // return the pointer to the user input
     return(pStr);
@@ -116,8 +116,3 @@ void clear_memory(const char* file_path, unsigned int** image_array, unsigned in
     free(image_array);
 
 }
-
-
-
-
-
