@@ -10,6 +10,7 @@ This program only loads jpgs and pngs. If you try to load any other image type, 
 
 ### Cloning the Repository
 First, you clone this directory onto your computer. To do this, click the green "code" button at the top of your screen. From there, either copy the SSH link or the HTTPS link. Then, in your terminal, run 
+
   git clone [copy link here]
 
 ## Dependencies
