@@ -22,8 +22,6 @@ int main(void){
     
 
     
-
-    
     // load the image
     unsigned int** image_array = load_resize_image(file_path, (unsigned int)w.ws_col, (unsigned int)w.ws_row);
 
