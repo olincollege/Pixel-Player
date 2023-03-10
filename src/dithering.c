@@ -87,79 +87,61 @@ void print_image(double** img, int height, int width) {
     const double lowx = 127.4;
     const double lown = 131.04;
     const double lowu = 134.68;
+    const double lowv = 138.32;
+    const double lowc = 141.96;
+    const double lowz = 145.6;
+    const double upperx = 149.24;
+    const double uppery = 152.88;
+    const double upperu = 156.52;
+    const double upperj = 160.16;
+    const double upperc = 163.8;
+    const double upperl = 167.44;
+    const double upperq = 171.08;
+    const double zero = 174.72;
+    const double uppero = 178.36;
+    const double upperz = 182;
+    const double lowerm = 185.64;
+    const double lowerw = 189.28;
+    const double lowerq = 192.92;
+    const double lowerp = 196.56;
+    const double lowerd = 200.2;
+    const double lowerb = 203.84;
+    const double lowerk = 207.48;
+    const double lowerh = 211.12;
+    const double lowera = 214.76;
+    const double lowero = 218.4;
+    const double star = 222.04;
+    const double hash = 225.68;
+    const double upperm = 229.32;
+    const double upperw = 232.96;
+    const double amp = 236.6;
+    const double eight = 240.24;
+    const double per = 243.88;
+    const double upperb = 247.52;
+    const double at = 251.16;
+    const double dollar = 254.8;
+
+    const int seventy = 70;
+
+    const int characters[70] = {' ', '.', '\'', '`', '^', '"', ',', ':', ';', 'I', 'l', '!', 'i', '>', '<', '~', '+', '_',
+                                  '-', '?', ']', '[', '}', '{', '1', ')', '(', '|', '\\', '/', 't', 'f', 'j', 'r', 'x', 'n',
+                                  'u', 'v', 'c', 'z', 'X', 'Y', 'U', 'J', 'C', 'L', 'Q', '0', 'O', 'Z', 'm', 'w', 'q', 'p',
+                                  'd', 'b', 'k', 'h', 'a', 'o', '*', '#', 'M', 'W', '&', '8', '%', 'B', '@', '$'};
+    double limits[70] = {space, period, apos, accent, carrot, quotation, comma, colon, semicolon, capeye, elle, exclamation, 
+                         loweye, greater, less, tilda, plus, underscore, dash, question, closebrack, openbrack, closecurl, 
+                         opencurl, one, openparan, closeparan, upright, backslash, slash, lowtee, loweff, lowjay, lowr, lowx, 
+                         lown, lowu, lowv, lowc, lowz, upperx, uppery, upperu, upperj, upperc, upperl, upperq, zero, uppero, 
+                         upperz, lowerm, lowerw, lowerq, lowerp, lowerd, lowerb, lowerk, lowerh, lowera, lowero, star, hash, 
+                         upperm, upperw, amp, eight, per, upperb, at, dollar};
+    // const double lowc 
     for(int row = 0; row < height; row++) {
         for(int col = 0; col < width; col++) {
-            if(img[row][col] <= space) {printf(" ");} 
-            else if(img[row][col] <= period) {printf(".");}
-            else if(img[row][col] <= apos) {printf("'");}
-            else if(img[row][col] <= accent) {printf("`");}
-            else if(img[row][col] <= carrot) {printf("^");}
-            else if(img[row][col] <= quotation) {printf("\"");}
-            else if(img[row][col] <= comma) {printf(",");}
-            else if(img[row][col] <= colon) {printf(":");}
-            else if(img[row][col] <= semicolon) {printf(";");}
-            else if(img[row][col] <= capeye) {printf("I");}
-            else if(img[row][col] <= elle) {printf("l");}
-            else if(img[row][col] <= exclamation) {printf("!");}
-            else if(img[row][col] <= loweye) {printf("i");}
-            else if(img[row][col] <= greater) {printf(">");}
-            else if(img[row][col] <= less) {printf("<");}
-            else if(img[row][col] <= tilda) {printf("~");}
-            else if(img[row][col] <= plus) {printf("+");}
-            else if(img[row][col] <= underscore) {printf("_");}
-            else if(img[row][col] <= dash) {printf("-");}
-            else if(img[row][col] <= question) {printf("?");}
-            else if(img[row][col] <= closebrack) {printf("]");}
-            else if(img[row][col] <= openbrack) {printf("[");}
-            else if(img[row][col] <= closecurl) {printf("}");}
-            else if(img[row][col] <= opencurl) {printf("{");}
-            else if(img[row][col] <= one) {printf("1");}
-            else if(img[row][col] <= openparan) {printf(")");} 
-            else if(img[row][col] <= closeparan) {printf("(");}
-            else if(img[row][col] <= upright) {printf("|");}
-            else if(img[row][col] <= backslash) {printf("\\");}
-            else if(img[row][col] <= slash) {printf("/");}
-            else if(img[row][col] <= lowtee) {printf("t");}
-            else if(img[row][col] <= loweff) {printf("f");}
-            else if(img[row][col] <= lowjay) {printf("j");}
-            else if(img[row][col] <= lowr) {printf("r");}
-            else if(img[row][col] <= lowx) {printf("x");}
-            else if(img[row][col] <= lown) {printf("n");}
-            else if(img[row][col] <= lowu) {printf("u");}
-            else if(img[row][col] <= 132.32) {printf("v");}
-            else if(img[row][col] <= 141.96) {printf("c");}
-            else if(img[row][col] <= 145.6) {printf("z");}
-            else if(img[row][col] <= 149.24) {printf("X");}
-            else if(img[row][col] <= 152.88) {printf("Y");}
-            else if(img[row][col] <= 156.52) {printf("U");}
-            else if(img[row][col] <= 160.16) {printf("J");}
-            else if(img[row][col] <= 163.8) {printf("C");}
-            else if(img[row][col] <= 167.44) {printf("L");}
-            else if(img[row][col] <= 171.08) {printf("Q");}
-            else if(img[row][col] <= 174.72) {printf("0");}
-            else if(img[row][col] <= 178.36) {printf("O");}
-            else if(img[row][col] <= 182) {printf("Z");}
-            else if(img[row][col] <= 185.64) {printf("m");}
-            else if(img[row][col] <= 189.28) {printf("w");}
-            else if(img[row][col] <= 192.92) {printf("q");}
-            else if(img[row][col] <= 196.56) {printf("p");}
-            else if(img[row][col] <= 200.2) {printf("d");}
-            else if(img[row][col] <= 203.84) {printf("b");}
-            else if(img[row][col] <= 207.48) {printf("k");}
-            else if(img[row][col] <= 211.12) {printf("h");}
-            else if(img[row][col] <= 214.76) {printf("a");}
-            else if(img[row][col] <= 218.4) {printf("o");}
-            else if(img[row][col] <= 222.04) {printf("*");}
-            else if(img[row][col] <= 225.68) {printf("#");}
-            else if(img[row][col] <= 229.32) {printf("M");}
-            else if(img[row][col] <= 232.96) {printf("W");}
-            else if(img[row][col] <= 236.6) {printf("&");}
-            else if(img[row][col] <= 240.24) {printf("8");}
-            else if(img[row][col] <= 243.88) {printf("%%");}
-            else if(img[row][col] <= 247.52) {printf("B");}
-            else if(img[row][col] <= 251.16) {printf("@");}
-            else {printf("$");}
-            // printf("%f ", img[row][col]);
+            for(int i = 0; i < 70; i++) {
+                if(img[row][col] <= limits[i]) {
+                    printf("%c", characters[i]);
+                    break;
+                }
+            }
         }
         printf("\n");
     }
