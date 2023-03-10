@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * Read a user input from the terminal
  *
@@ -7,7 +9,7 @@
  *
  * @return a string in heap memory representing the user input
  */
-const char* user_input(void);
+char* user_input(void);
 
 
 /**
@@ -24,7 +26,7 @@ const char* user_input(void);
  * @param t_height an unsigned integer representing the desired height of the output.
  * @return an unsigned integer array of arrays, representing the grayscale values of an image.
  */
-unsigned int** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height);
+unsigned int** load_resize_image(char* file_path, unsigned int t_width, unsigned int t_height);
 
 
 /**
@@ -38,4 +40,4 @@ unsigned int** load_resize_image(const char* file_path, unsigned int t_width, un
  * @param image_array an unsigned integer array of arrays, representing a grayscale image
  * @param image_height an integer representing the height (# of rows) of image_array
  */
-void clear_memory(const char* file_path, unsigned int** image_array, unsigned int image_height);
+void clear_memory(char* file_path, unsigned int** image_array, unsigned int image_height);
