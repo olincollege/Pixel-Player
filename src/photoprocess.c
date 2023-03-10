@@ -90,6 +90,7 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
 
     unsigned int area_size = t_width*t_height;
 
+
     for (size_t i = 0; i < area_size; i++){
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
