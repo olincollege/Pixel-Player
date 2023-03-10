@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* user_input(void){
+const char* user_input(void){
     // define the storage size to allocate 
     const unsigned int len_max = 128;
     // define a variable to track the size of the current user's input
@@ -22,27 +22,27 @@ char* user_input(void){
 
     if(pStr != NULL)
     {
-	int c_input = EOF;
-	unsigned int idx = 0;
+    int c_input = EOF;
+    unsigned int idx = 0;
 
     //accept user input until hit enter or end of file
-	while (( c_input = getchar() ) != '\n' && c_input != EOF)
-	{
+    while (( c_input = getchar() ) != '\n' && c_input != EOF)
+    {
         // assign the input character to memory
-		pStr[idx++]=(char)c_input;
+        pStr[idx++]=(char)c_input;
 
-		//if idx reached maximize size then realloc size
-		if(idx == current_size)
-		{
+        //if idx reached maximize size then realloc size
+        if(idx == current_size)
+        {
             // update the maximum amount of memory to allocate
             current_size = idx+len_max;
             // allocate the new memory with our string
-			pStr = realloc(pStr, current_size);
-		}
-	}
+            pStr = realloc(pStr, current_size);
+        }
+    }
 
     // add an ending character to the end
-	pStr[idx] = '\0';
+    pStr[idx] = '\0';
 
     // return the pointer to the user input
     return(pStr);
@@ -53,7 +53,7 @@ return(pStr);
 
 }
 
-double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t_height){
+double** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
     // create the variables to store the original photo properties
     int width = 0;
     int height = 0;
@@ -90,6 +90,7 @@ double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t
 
     unsigned int area_size = t_width*t_height;
 
+
     for (size_t i = 0; i < area_size; i++){
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
@@ -100,7 +101,7 @@ double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t
 
 }
 
-void clear_memory(char* file_path, unsigned int** image_array, unsigned int image_height){
+void clear_memory(const char* file_path, unsigned int** image_array, unsigned int image_height){
     // clear all of the mallocs from memory
 
     // free the file path first
@@ -115,8 +116,3 @@ void clear_memory(char* file_path, unsigned int** image_array, unsigned int imag
     free(image_array);
 
 }
-
-
-
-
-
