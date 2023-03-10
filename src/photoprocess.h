@@ -37,7 +37,7 @@ unsigned int** load_resize_image(char* file_path, unsigned int t_width, unsigned
  * order to loop through and free the arrays nested in the array of arrays.
  *
  * @param file_path a string representing the file path to a .png or .jpg image
- * @param image_array an unsigned integer array of arrays, representing a grayscale image
+ * @param image_array an double array of arrays, representing a grayscale image
  * @param image_height an integer representing the height (# of rows) of image_array
  */
-void clear_memory(char* file_path, unsigned int** image_array, unsigned int image_height);
+void clear_memory(char* file_path, double** image_array, unsigned int image_height);

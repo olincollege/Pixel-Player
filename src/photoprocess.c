@@ -101,7 +101,7 @@ double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t
 
 }
 
-void clear_memory(char* file_path, unsigned int** image_array, unsigned int image_height){
+void clear_memory(char* file_path, double** image_array, unsigned int image_height){
     // clear all of the mallocs from memory
 
     // free the file path first

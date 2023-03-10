@@ -19,13 +19,13 @@ int main(void){
     //const char* file_path = user_input();
 
     char* file_path = user_input();
-
+ 
 
     // load the image
-    unsigned int** image_array = load_resize_image(file_path, (unsigned int)window.ws_col, (unsigned int)window.ws_row);
+    double** image_array = load_resize_image(file_path, window.ws_col, window.ws_row);
 
-    dither(image_array, (unsigned int)window.ws_row, (unsigned int)window.ws_col);
-    print_image(image_array, (unsigned int)window.ws_row, (unsigned int)window.ws_col);
+    dither(image_array, window.ws_row, window.ws_col);
+    print_image(image_array, window.ws_row, window.ws_col);
 
 
     // do not run if file path is hard coded

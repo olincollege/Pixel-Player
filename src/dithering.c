@@ -44,8 +44,6 @@ void dither (double** img, int height, int width) {
 
         }
     }
-    // printf("here\n");
-    // print_image(img, height, width);
 }
 
 
@@ -118,7 +116,7 @@ void print_image(double** img, int height, int width) {
     const double eight = 240.24;
     const double per = 243.88;
     const double upperb = 247.52;
-    const double at = 251.16;
+    const double ats = 251.16;
     const double dollar = 254.8;
 
     const int seventy = 70;
@@ -132,11 +130,11 @@ void print_image(double** img, int height, int width) {
                          opencurl, one, openparan, closeparan, upright, backslash, slash, lowtee, loweff, lowjay, lowr, lowx, 
                          lown, lowu, lowv, lowc, lowz, upperx, uppery, upperu, upperj, upperc, upperl, upperq, zero, uppero, 
                          upperz, lowerm, lowerw, lowerq, lowerp, lowerd, lowerb, lowerk, lowerh, lowera, lowero, star, hash, 
-                         upperm, upperw, amp, eight, per, upperb, at, dollar};
+                         upperm, upperw, amp, eight, per, upperb, ats, dollar};
     // const double lowc 
     for(int row = 0; row < height; row++) {
         for(int col = 0; col < width; col++) {
-            for(int i = 0; i < 70; i++) {
+            for(int i = 0; i < seventy; i++) {
                 if(img[row][col] <= limits[i]) {
                     printf("%c", characters[i]);
                     break;
