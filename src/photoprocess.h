@@ -1,5 +1,6 @@
 #pragma once
-
+#include "stb_image.h"
+#include "stb_image_resize.h"
 /**
  * Read a user input from the terminal
  *
@@ -26,7 +27,7 @@ char* user_input(void);
  * @param t_height an unsigned integer representing the desired height of the output.
  * @return an unsigned integer array of arrays, representing the grayscale values of an image.
  */
-unsigned int** load_resize_image(char* file_path, unsigned int t_width, unsigned int t_height);
+double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t_height);
 
 
 /**

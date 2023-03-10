@@ -1,6 +1,6 @@
 // #include "extern_define.h"
 #include "dithering.h"
-#include "photoprocess.c"
+#include "photoprocess.h"
 #include "stb_image.h"
 #include "stb_image_resize.h"
 

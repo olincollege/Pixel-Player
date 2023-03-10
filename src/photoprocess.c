@@ -1,7 +1,7 @@
 // load the needed libraries
-#include "stb_image.h"
-#include "stb_image_resize.h"
-//#include "photoprocess.h"
+// #include "stb_image.h"
+// #include "stb_image_resize.h"
+#include "photoprocess.h"
 
 #include <stdio.h>
 #include <stdlib.h>
