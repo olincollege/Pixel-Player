@@ -20,12 +20,11 @@ First, clone this directory onto your computer. To do this, click the green "cod
   make
   ./src/main
   ```
-  The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path run the line:
+  The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path run the following line in of the folder of image:
   ```
   readlink -f name_of_file.filetype
   ```
   
-
 ## Dependencies
 
 ## Demos
