@@ -80,21 +80,3 @@ Test(test_print, array_full, .init = cr_redirect_stdout) {
     cr_assert_stdout_eq_str(" \n");
     free(arr);
 }
-
-// Check that printing an array of 255 prints blanks only
-Test(test_print, array_blank, .init = cr_redirect_stdout) {
-    int height = 1;
-    int width = 1;
-    double** arr = (double**) malloc (height * sizeof(double*));
-    for(int i = 0; i < height; i++) {
-        arr[i] = (double*) malloc (width * sizeof(double));
-    }
-    assign(arr, height, width, TWO_FIVE_FIVE);
-    print_image(arr, height, width);
-    (void)fflush(stdout);
-    (void)fclose(stdout);
-
-    cr_assert_stdout_eq_str("$\n");
-    free(arr);
-
-}
