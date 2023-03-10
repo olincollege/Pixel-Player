@@ -88,7 +88,7 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
 
-    for (size_t i = 0; i < (unsigned long)(t_width*t_height); i++){
+    for (size_t i = 0; i < (unsigned)(t_width*t_height); i++){
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
     }
