@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-
+const double TWO_FIVE_FIVE = 255.0;
 // function to assign a value to each spot in an array
 void assign(double** arr, int height, int width, double val) {
     for(int i = 0; i < height; i++) {
@@ -17,7 +17,8 @@ void assign(double** arr, int height, int width, double val) {
 
 // Check that passing a positive number to get_new_value returns a positive number
 Test(test_new_value, positive_num) {
-    cr_assert(eq(get_new_value(255.0), 1.0));
+    
+    cr_assert(eq(get_new_value(TWO_FIVE_FIVE), 1.0));
 }
 // Check that passing zero to get_new_value returns zero
 Test(test_new_value, zero) {
@@ -25,31 +26,39 @@ Test(test_new_value, zero) {
 }
 // check that passing a negative number to get_new_value returns a negative number
 Test(test_new_value, negative_num) {
-    cr_assert(eq(get_new_value(-255.0), -1.0));
+    cr_assert(eq(get_new_value(TWO_FIVE_FIVE * -1.0), -1.0));
 }
-// check that dithering an array of 0s does not alter that array
-Test(test_dither, array_zeros) {
-    int height = 5;
-    int width = 5;
+
+static double** make_array(int height, int width) {
     double** arr = (double**) malloc (height * sizeof(double*));
+
     for(int i = 0; i < height; i++) {
         arr[i] = (double*) malloc (width * sizeof(double));
     }
-    assign(arr, height, width, 0.0);
+    return arr;
+}
 
-    double** expected_arr = (double**) malloc (height * sizeof(double*));
-    for(int i = 0; i < height; i++) {
-        expected_arr[i] = (double*) malloc (width * sizeof(double));
-    }
-    assign(expected_arr, height, width, 0.0);
-
-    dither(arr, height, width);
-
+static void test_array(double** arr_calc, double** arr_expect, int height, int width) {
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
-            cr_assert(eq(arr[i][j], expected_arr[i][j]));
+            cr_assert(eq(arr_calc[i][j], arr_expect[i][j]));
         }
     }
+}
+
+// check that dithering an array of 0s does not alter that array
+Test(test_dither, array_zeros) {
+    const int five = 5;
+    double** arr = make_array(five, five);
+
+    assign(arr, five, five, 0.0);
+
+    double** expected_arr = make_array(five, five);
+    assign(expected_arr, five, five, 0.0);
+
+    dither(arr, five, five);
+
+    test_array(arr, expected_arr, five, five);
 
     free(arr);
     free(expected_arr);
@@ -80,7 +89,7 @@ Test(test_print, array_blank, .init = cr_redirect_stdout) {
     for(int i = 0; i < height; i++) {
         arr[i] = (double*) malloc (width * sizeof(double));
     }
-    assign(arr, height, width, 255.0);
+    assign(arr, height, width, TWO_FIVE_FIVE);
     print_image(arr, height, width);
     (void)fflush(stdout);
     (void)fclose(stdout);
