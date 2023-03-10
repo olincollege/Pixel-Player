@@ -19,11 +19,7 @@ int main(void){
 
     char* file_path = user_input();
 
-    char test[200];
-
-    getcwd(test, sizeof(test));
-
-    printf("test: %s", test);
+    
 
     
 
