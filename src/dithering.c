@@ -121,11 +121,11 @@ void print_image(double** img, int height, int width) {
 
     const int seventy = 70;
 
-    const int characters[70] = {' ', '.', '\'', '`', '^', '"', ',', ':', ';', 'I', 'l', '!', 'i', '>', '<', '~', '+', '_',
+    const int characters[ARRAY_LENGTH] = {' ', '.', '\'', '`', '^', '"', ',', ':', ';', 'I', 'l', '!', 'i', '>', '<', '~', '+', '_',
                                   '-', '?', ']', '[', '}', '{', '1', ')', '(', '|', '\\', '/', 't', 'f', 'j', 'r', 'x', 'n',
                                   'u', 'v', 'c', 'z', 'X', 'Y', 'U', 'J', 'C', 'L', 'Q', '0', 'O', 'Z', 'm', 'w', 'q', 'p',
                                   'd', 'b', 'k', 'h', 'a', 'o', '*', '#', 'M', 'W', '&', '8', '%', 'B', '@', '$'};
-    double limits[70] = {space, period, apos, accent, carrot, quotation, comma, colon, semicolon, capeye, elle, exclamation, 
+    double limits[ARRAY_LENGTH] = {space, period, apos, accent, carrot, quotation, comma, colon, semicolon, capeye, elle, exclamation, 
                          loweye, greater, less, tilda, plus, underscore, dash, question, closebrack, openbrack, closecurl, 
                          opencurl, one, openparan, closeparan, upright, backslash, slash, lowtee, loweff, lowjay, lowr, lowx, 
                          lown, lowu, lowv, lowc, lowz, upperx, uppery, upperu, upperj, upperc, upperl, upperq, zero, uppero, 
