@@ -139,6 +139,7 @@ void print_image(double** img, int height, int width) {
                     printf("%c", characters[i]);
                     break;
                 }
+                
             }
         }
         printf("\n");
