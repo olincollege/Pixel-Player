@@ -24,7 +24,7 @@ int main(void){
     
     // load the image
     unsigned int** image_array = load_resize_image(file_path, (unsigned int)w.ws_col, (unsigned int)w.ws_row);
-    
+
     dither(image_array, (unsigned int)w.ws_row, (unsigned int)w.ws_col);
     print_image(image_array, (unsigned int)w.ws_row, (unsigned int)w.ws_col);
 

@@ -9,7 +9,7 @@
 
 const char* user_input(void){
     // define the storage size to allocate 
-    unsigned int len_max = 128;
+    const unsigned int len_max = 128;
     // define a variable to track the size of the current user's input
     unsigned int current_size = 0;
     
@@ -22,30 +22,31 @@ const char* user_input(void){
 
     if(pStr != NULL)
     {
-	int c = EOF;
-	unsigned int i = 0;
+	int c_input = EOF;
+	unsigned int idx = 0;
 
     //accept user input until hit enter or end of file
-	while (( c = getchar() ) != '\n' && c != EOF)
+	while (( c_input = getchar() ) != '\n' && c_input != EOF)
 	{
         // assign the input character to memory
-		pStr[i++]=(char)c;
+		pStr[idx++]=(char)c_input;
 
-		//if i reached maximize size then realloc size
-		if(i == current_size)
+		//if idx reached maximize size then realloc size
+		if(idx == current_size)
 		{
             // update the maximum amount of memory to allocate
-            current_size = i+len_max;
+            current_size = idx+len_max;
             // allocate the new memory with our string
 			pStr = realloc(pStr, current_size);
 		}
 	}
 
     // add an ending character to the end
-	pStr[i] = '\0';
+	pStr[idx] = '\0';
 
     // return the pointer to the user input
     return(pStr);
+
 }
 
 return(pStr);
@@ -54,9 +55,9 @@ return(pStr);
 
 double** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
     // create the variables to store the original photo properties
-    int width;
-    int height;
-    int channels;
+    int width = 0;
+    int height = 0;
+    int channels = 0;
 
     // create a character array to store the resized image
     unsigned char resized_img[t_width*t_height];
@@ -76,7 +77,7 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
     // if the load failed it will return NULL, so exit the code
     if (img == NULL){
         puts("Error in loading the image! Remember to provide the full file path");
-        exit(1);
+        exit(1); //NO LINT
     }
 
     // resize the image to the user terminal dimensions
@@ -87,8 +88,10 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
+    unsigned int area_size = t_width*t_height;
 
-    for (size_t i = 0; i < (unsigned)(t_width*t_height); i++){
+
+    for (size_t i = 0; i < area_size; i++){
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
     }
