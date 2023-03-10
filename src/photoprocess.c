@@ -77,7 +77,7 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
     // if the load failed it will return NULL, so exit the code
     if (img == NULL){
         puts("Error in loading the image! Remember to provide the full file path");
-        exit(1);
+        exit(1); //NO LINT
     }
 
     // resize the image to the user terminal dimensions
@@ -88,8 +88,9 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
     // remember arrays start at 0,0
     // refer to this https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
 
+    unsigned int area_size = t_width*t_height;
 
-    for (size_t i = 0; i < (unsigned long)(t_width*t_height); i++){
+    for (size_t i = 0; i < area_size; i++){
         // store the pixel in its proper place
         image_array[i / t_width][i % t_width] = (int)(resized_img[i]);
     }
