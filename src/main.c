@@ -6,6 +6,7 @@
 #include "photoprocess.c"
 #include "dithering.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 
 int main(void){
@@ -17,6 +18,8 @@ int main(void){
     //const char* file_path = user_input();
 
     const char* file_path = user_input();
+
+    
 
     
     // load the image
