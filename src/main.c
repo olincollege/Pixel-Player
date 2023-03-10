@@ -16,7 +16,7 @@ int main(void){
     // prompt the user for a file path
     //const char* file_path = user_input();
 
-    const char* file_path = user_input();
+    char* file_path = user_input();
 
     
     // load the image

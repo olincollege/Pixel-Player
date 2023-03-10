@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char* user_input(void){
+char* user_input(void){
     // define the storage size to allocate 
     const unsigned int len_max = 128;
     // define a variable to track the size of the current user's input
@@ -53,7 +53,7 @@ return(pStr);
 
 }
 
-double** load_resize_image(const char* file_path, unsigned int t_width, unsigned int t_height){
+double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t_height){
     // create the variables to store the original photo properties
     int width = 0;
     int height = 0;
@@ -100,7 +100,7 @@ double** load_resize_image(const char* file_path, unsigned int t_width, unsigned
 
 }
 
-void clear_memory(const char* file_path, unsigned int** image_array, unsigned int image_height){
+void clear_memory(char* file_path, unsigned int** image_array, unsigned int image_height){
     // clear all of the mallocs from memory
 
     // free the file path first
