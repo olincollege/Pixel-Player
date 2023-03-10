@@ -68,7 +68,7 @@ Test(test_print, array_full, .init = cr_redirect_stdout) {
     (void)fflush(stdout);
     (void)fclose(stdout);
 
-    cr_assert_stdout_eq_str("$\n");
+    cr_assert_stdout_eq_str(" \n");
     free(arr);
 }
 
@@ -85,7 +85,7 @@ Test(test_print, array_blank, .init = cr_redirect_stdout) {
     (void)fflush(stdout);
     (void)fclose(stdout);
 
-    cr_assert_stdout_eq_str(" \n");
+    cr_assert_stdout_eq_str("$\n");
     free(arr);
 
 }

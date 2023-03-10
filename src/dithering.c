@@ -1,19 +1,25 @@
 #include "dithering.h"
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
+
+
 
 double get_new_value(double old_val) {
-    // round returns an int??
-    return (double) (round(old_val  / (255.0)));
+    const double white = 255.0;
+    return (round(old_val  / (white)));
 }
 
 void dither (double** img, int height, int width) {
-
+    const double white = 255.0;
+    const double seven = 7.0;
+    const double sixteen = 16.0;
+    const double three = 3.0;
+    const double five = 5.0;
     for(int row = 0; row < height; row++) {
         // double row_array = img[row];
         for(int col = 0; col < width; col++) {
             // printf("%d\n", sizeof(img)/sizeof(img[0]));
-            double old_value = img[row][col]/255.;
+            double old_value = img[row][col]/white;
             // printf("%f ", old_value);
             double new_value = get_new_value(old_value);
             // printf("new: %f \n", new_value);
@@ -23,16 +29,16 @@ void dither (double** img, int height, int width) {
             // ignoring border pixels 
             if (col < (width - 1)) {
                 // printf("%f\n", (error * (7./16.)));
-                img[row][col + 1] += (new_value * (7./16.));
+                img[row][col + 1] += (new_value * (seven/sixteen));
             }
 
             if (row < (height - 1)) {
                 if (col > 0) {
-                    img[row][col - 1] += (error * (3./16.));
+                    img[row][col - 1] += (error * (three/sixteen));
                 }
-                img[row + 1][col] += (error * (5./16.));
+                img[row + 1][col] += (error * (five/sixteen));
                 if (col < (width - 1)) {
-                    img[row + 1][col + 1] += (error/16.);
+                    img[row + 1][col + 1] += (error/sixteen);
                 }
             }
 
@@ -44,22 +50,33 @@ void dither (double** img, int height, int width) {
 
 
 void print_image(double** img, int height, int width) {
+    const double space = 3.64;
+    const double period = 7.28;
+    const double apos = 10.92;
+    const double accent = 14.56;
+    const double carrot = 18.2;
+    const double backslash = 21.84;
+    const double comma = 25.48;
+    const double colon = 29.12;
+    const double semicolon = 32.76;
+    const double capeye = 36.4;
+    const double elle = 40.4;
+    const double exclamation = 43.68;
+
     for(int row = 0; row < height; row++) {
         for(int col = 0; col < width; col++) {
-
-            if(img[row][col] <= 3.64) {
-                printf(" ");
-            } else if(img[row][col] <= 7.28) {printf(".");}
-            else if(img[row][col] <= 10.92) {printf("'");}
-            else if(img[row][col] <= 14.56) {printf("`");}
-            else if(img[row][col] <= 18.2) {printf("^");}
-            else if(img[row][col] <= 21.84) {printf("\"");}
-            else if(img[row][col] <= 25.48) {printf(",");}
-            else if(img[row][col] <= 29.12) {printf(":");}
-            else if(img[row][col] <= 32.76) {printf(";");}
-            else if(img[row][col] <= 36.4) {printf("I");}
-            else if(img[row][col] <= 40.04) {printf("l");}
-            else if(img[row][col] <= 43.68) {printf("!");}
+            if(img[row][col] <= space) {printf(" ");} 
+            else if(img[row][col] <= period) {printf(".");}
+            else if(img[row][col] <= apos) {printf("'");}
+            else if(img[row][col] <= accent) {printf("`");}
+            else if(img[row][col] <= carrot) {printf("^");}
+            else if(img[row][col] <= backslash) {printf("\"");}
+            else if(img[row][col] <= comma) {printf(",");}
+            else if(img[row][col] <= colon) {printf(":");}
+            else if(img[row][col] <= semicolon) {printf(";");}
+            else if(img[row][col] <= capeye) {printf("I");}
+            else if(img[row][col] <= elle) {printf("l");}
+            else if(img[row][col] <= exclamation) {printf("!");}
             else if(img[row][col] <= 47.32) {printf("i");}
             else if(img[row][col] <= 50.96) {printf(">");}
             else if(img[row][col] <= 54.6) {printf("<");}
@@ -90,7 +107,7 @@ void print_image(double** img, int height, int width) {
             else if(img[row][col] <= 145.6) {printf("z");}
             else if(img[row][col] <= 149.24) {printf("X");}
             else if(img[row][col] <= 152.88) {printf("Y");}
-            else if(img[row][col] <= 156.52) {printf("U");}// $@B%8&WM#*oahkbdpqwmZO0QLCJ
+            else if(img[row][col] <= 156.52) {printf("U");}
             else if(img[row][col] <= 160.16) {printf("J");}
             else if(img[row][col] <= 163.8) {printf("C");}
             else if(img[row][col] <= 167.44) {printf("L");}
@@ -115,7 +132,7 @@ void print_image(double** img, int height, int width) {
             else if(img[row][col] <= 236.6) {printf("&");}
             else if(img[row][col] <= 240.24) {printf("8");}
             else if(img[row][col] <= 243.88) {printf("%%");}
-            else if(img[row][col] <= 274.52) {printf("B");}
+            else if(img[row][col] <= 247.52) {printf("B");}
             else if(img[row][col] <= 251.16) {printf("@");}
             else {printf("$");}
             // printf("%f ", img[row][col]);
@@ -123,3 +140,4 @@ void print_image(double** img, int height, int width) {
         printf("\n");
     }
 }
+
