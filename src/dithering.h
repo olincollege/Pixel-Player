@@ -1,5 +1,5 @@
 #pragma once
-
+#define ARRAY_LENGTH 70
 /*
  * Gets the nearest pixel value, which is the current pixel value divided by 255, rounded
  * 

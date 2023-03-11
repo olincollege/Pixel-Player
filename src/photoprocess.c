@@ -77,7 +77,7 @@ double** load_resize_image(char* file_path, unsigned int t_width, unsigned int t
     // if the load failed it will return NULL, so exit the code
     if (img == NULL){
         puts("Error in loading the image! Remember to provide the full file path");
-        exit(1); //NO LINT
+        exit(1); //NOLINT
     }
 
     // resize the image to the user terminal dimensions
