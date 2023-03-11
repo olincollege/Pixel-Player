@@ -2,19 +2,33 @@
 
 
 <p align="center">
-  <img src="Figures/prewave.png" width="200" />
-  <img src="Figures/postwave.png" width="260" /> 
+  <img src="Figures/prewave.png" width="400" />
+  <img src="Figures/postwave.png" width="515" /> 
 </p>
 
+<p align = "center">
+Use C to print any .jpg or .png image into your terminal as ASCII art!
+</p>
 
-## Description 
+## Table of Contents  
+[What does this code do?](#what-does-this-code-do)  
+[Structure Overview](#structure-overview) 
+
+## What does this code do?
+
+This code takes a string representing the file path to either a .jpg or .png image, loads it as a character array as long as the pixel width*height, and then converts it to an array of arrays, which represents the grayscaled image. At this point, the array is looped through and the grayscale values are replaced with their corresponding ASCII art, depending on how dark or light the image needs to be. Note that this code will load only the grayscale values of an image so it does not matter how many layers the image has. 
+
+
+
+
+## Structure Overview
 
 Pixel Player takes an image from your computer (file path specified by you) and prints it out as ASCII art. The image is turned into grayscale, and then the dithered image is turned into ASCII art by assigning each gray tone to a different character. Then the ASCII art is printed onto the terminal. 
 
 
 This program only loads jpgs and pngs. If you try to load any other image type, the program will crash.
 
-## How to run code
+## How to run the code
 
 
 ### Cloning the Repository
