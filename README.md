@@ -68,9 +68,10 @@ The title of this library is tad misleading as our code does not use dithering i
 ### Cloning the Repository
 First, clone this directory onto your computer. To do this, click the green "code" button at the top of the screen. From there, either copy the SSH link or the HTTPS link. Then, in your terminal, run 
   ```
-  git clone [copy link here].
+  git clone copy_link_here
   ```
-  Once the repository is fully loaded up. Run the following lines of code in your terminal.
+### Running the Code
+Once the repository is fully loaded up. Run the following lines of code in your terminal. This assumes that you have C, GCC, and Cmake installed on your computer.
   ```
   mkdir build
   cd build/
@@ -78,10 +79,15 @@ First, clone this directory onto your computer. To do this, click the green "cod
   make
   ./src/main
   ```
-  The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path run the following line in of the folder of image:
+### Time to Print an Image!
+The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path run the following line in of the folder of image:
+
   ```
   readlink -f name_of_file.filetype
   ```
-  
+Once you copy and paste the full file path, just hit enter and see your image come to life in ASCII glory! 
 
+Quick tip: lower the text size of your terminal in order to receive a higher resolution output
 
+## Contributors
+This project was a collaboration between three Olin College of Engineering Students: Maya Cranor, Phillip Post, and Isabel de Luis. Special thanks to Steve Matsumoto for this help.
