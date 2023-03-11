@@ -2,8 +2,7 @@
 
 
 <p align="center">
-  <img src="Figures/prewave.png" width="400" />
-  <img src="Figures/postwave.png" width="515" /> 
+  <img src="Figures/banner.png"  />
 </p>
 
 <p align = "center">
