@@ -88,7 +88,9 @@ Test(user_input, all_white_image) {
     // load the image
     double** image = load_resize_image(cwd, 3, 3);
 
-    printf("size of image is %d\n", (int)sizeof(image[1][1]));
+    // cast the image to an array since sizeof is returning the size of the pointer
+
+    printf("size of image is %d\n", (int)sizeof(image));
     printf("size of the all_white_image is %d\n", (int)sizeof(expected));
 
     cr_assert_arr_eq_cmp(image, expected, sizeof(double **));
