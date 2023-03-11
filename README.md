@@ -1,12 +1,21 @@
-# Pixel-Player
+<h1 align = "center"> Pixel Player </h1>
+
+
+<p align="center">
+  <img src="Figures/prewave.png" width="200" />
+  <img src="Figures/postwave.png" width="260" /> 
+</p>
+
 
 ## Description 
 
 Pixel Player takes an image from your computer (file path specified by you) and prints it out as ASCII art. The image is turned into grayscale, and then the dithered image is turned into ASCII art by assigning each gray tone to a different character. Then the ASCII art is printed onto the terminal. 
 
+
 This program only loads jpgs and pngs. If you try to load any other image type, the program will crash.
 
 ## How to run code
+
 
 ### Cloning the Repository
 First, clone this directory onto your computer. To do this, click the green "code" button at the top of the screen. From there, either copy the SSH link or the HTTPS link. Then, in your terminal, run 
@@ -29,4 +38,5 @@ First, clone this directory onto your computer. To do this, click the green "cod
 ## Dependencies
 
 ## Demos
+
 
