@@ -80,7 +80,7 @@ Once the repository is fully loaded up. Run the following lines of code in your 
   ./src/main
   ```
 ### Time to Print an Image!
-The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path run the following line in of the folder of image:
+The program will ask you for the file path of the image. Enter it. All preloaded images are stored in the /src/img folder. To find the file path of any image run the following line in the folder of the image:
 
   ```
   readlink -f name_of_file.filetype
